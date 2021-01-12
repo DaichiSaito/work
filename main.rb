@@ -3,7 +3,13 @@ require './src/detector.rb'
 require './src/strategy/ruby_basic_strategy.rb'
 require './src/strategy/gorigori_strategy.rb'
 
-original = (1..1000).to_a.shuffle
+DEFAULT_SIZE = 1000
+arg_size = ARGV[0]
+
+raise StandardError.new("不正な値だよ(´ﾟдﾟ｀)") if !arg_size.nil? && arg_size.to_i < 2
+
+size = arg_size&.to_i || DEFAULT_SIZE
+original = (1..(size)).to_a.shuffle
 comparison = original.dup - [original.sample]
 
 puts 'start RubyBasicStrategy ...'
