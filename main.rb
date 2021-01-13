@@ -3,6 +3,7 @@ require './src/detector.rb'
 require './src/strategy/ruby_basic_strategy.rb'
 require './src/strategy/gorigori_strategy.rb'
 require './src/strategy/binary_search_strategy.rb'
+require './src/strategy/best_strategy.rb'
 
 DEFAULT_SIZE = 1000
 arg_size = ARGV[0]
@@ -36,3 +37,11 @@ result = Benchmark.realtime do
 end
 puts "処理時間は: #{result}"
 puts 'end BinarySearchStrategy'
+
+puts 'start BestStrategy ...'
+result = Benchmark.realtime do
+  detector = Detector.new(original, comparison, BestStrategy.new)
+  puts "取り出されたのは: #{detector.detect}"
+end
+puts "処理時間は: #{result}"
+puts 'end BestStrategy'
